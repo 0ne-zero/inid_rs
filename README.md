@@ -1,4 +1,4 @@
-# Rust Iran National Identifier
+# Iran National Identifier
 
 ## What it can do ?
 - It can generate INID with or without prefix.
