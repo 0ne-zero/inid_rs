@@ -7,6 +7,7 @@ description = "A crate that can generate Iran National Identifier code and even 
 repository = "https://github.com/0ne-zero/inid_rs"
 readme = "README.md"
 keywords = ["iran","inid"]
+license = "MIT"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
