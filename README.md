@@ -6,3 +6,4 @@
 
 ## Credits
 - This program is just a rust version of [pyINID](https://github.com/RYNEQ/pyINID) project that [Ariyan Eghbal](https://github.com/RYNEQ) made it
+- For more information please check [HERE](https://github.com/RYNEQ/pyINID)
