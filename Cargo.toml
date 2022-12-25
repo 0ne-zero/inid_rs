@@ -1,6 +1,6 @@
 [package]
 name = "inid_rs"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2021"
 authors = ["Pouria Khakpour <pouria.Khakpour9909@gmail.com>"]
 description = "A crate that can generate Iran National Identifier code and even check a INID is valid or not"
