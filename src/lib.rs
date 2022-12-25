@@ -6,8 +6,9 @@ use std::{vec};
 use error::INIDError;
 use rand::Rng;
 
-mod error;
+pub mod error;
 
+const INID_LENGTH:u8 = 10;
 const DECIMAL_RADIX:u8 = 10;
 type INID = Vec<u8>;
 
@@ -47,7 +48,7 @@ pub fn generate_id(prefix:Option<&String>) -> Result<String,INIDError>{
         let checksum = generate_checksum(&inid);
         inid.push(checksum);
 
-        return Ok(convert_inid_to_str(&inid));
+        return Ok(convert_inid_to_str(&inid))
        },
        None =>{
         let mut inid :Vec<u8> = vec![];
@@ -65,7 +66,7 @@ pub fn generate_id(prefix:Option<&String>) -> Result<String,INIDError>{
    }
 }
 
-/// Chekcs a INID is valid or not
+/// Checks an INID is valid or not
 /// 
 /// # Examples
 /// ```
@@ -74,6 +75,12 @@ pub fn generate_id(prefix:Option<&String>) -> Result<String,INIDError>{
 /// assert_eq!(res,false);
 /// ```
 pub fn check_inid(s_inid:&String) -> Result<bool,INIDError>{
+    if s_inid.chars().count() != INID_LENGTH as usize{
+        return Err(INIDError::InvalidLength)
+    }
+    if !s_inid.chars().all(|c| c.is_numeric()){
+        return Err(INIDError::NotNumerical)
+    }
     let inid = convert_str_to_inid(s_inid)?;
     Ok(generate_checksum(&inid) == inid[inid.len()-1])   
 }
@@ -97,7 +104,7 @@ fn convert_str_to_inid(input:&String) -> Result<INID,INIDError>{
         }
         match s.to_digit(DECIMAL_RADIX as u32){
             Some(char_digit) => nid.push(char_digit as u8),
-            None => {return Err(error::INIDError::InvalidFormat);},
+            None => return Err(error::INIDError::NotNumerical),
         }
     }
     Ok(nid)
